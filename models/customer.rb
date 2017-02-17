@@ -27,17 +27,22 @@ class Customer
   end
 
   def self.all()
-    sql = "SELECT * FROM customers"
+    sql = "SELECT * FROM customers;"
     return self.get_many(sql)
   end
 
   def delete
-    sql = "DELETE FROM customers WHERE id = #{@id}"
+    sql = "DELETE FROM customers WHERE id = #{@id};"
     SqlRunner.run(sql)
   end
 
   def update
-    sql = "UPDATE customers SET (name, funds) = ('#{@name}', #{@funds}) WHERE id = #{@id}"
+    sql = "UPDATE customers SET (name, funds) = ('#{@name}', #{@funds}) WHERE id = #{@id};"
     SqlRunner.run(sql)
+  end
+
+  def films
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON film_id = films.id WHERE customer_id = #{@id};"
+    return Film.get_many(sql)
   end
 end
