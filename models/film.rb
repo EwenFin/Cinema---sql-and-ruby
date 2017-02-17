@@ -8,7 +8,7 @@ class Film
   def initialize(options)
     @id = options['id'].to_i
     @title = options['title']
-    @price = options['price'].to_i
+    @price = options['price']
     @review = options['review']
   end
 
@@ -48,4 +48,5 @@ class Film
     sql = "SELECT customers.* FROM customers INNER JOIN tickets ON customer_id = customers.id WHERE film_id = #{@id};"
     return Customer.get_many(sql)
   end
+
 end

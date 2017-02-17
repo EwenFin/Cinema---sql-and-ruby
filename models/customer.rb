@@ -6,7 +6,7 @@ class Customer
   def initialize(options)
     @id = options['id'].to_i
     @name = options['name']
-    @funds = options['funds'].to_i
+    @funds = options['funds']
   end
 
   def save()
@@ -44,5 +44,26 @@ class Customer
   def films
     sql = "SELECT films.* FROM films INNER JOIN tickets ON film_id = films.id WHERE customer_id = #{@id};"
     return Film.get_many(sql)
+  end
+
+  def tickets
+    sql = "SELECT tickets.* FROM tickets WHERE customer_id = #{@id};"
+    return Ticket.get_many(sql)
+  end
+
+  def buy_ticket(film)
+    cost = film.price
+    counter = 0
+    if self.funds >= cost && counter <= 50
+    self.funds -= cost
+    counter += 1
+    self.update
+    ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id}) 
+    ticket.save
+    elsif self.funds < cost
+      puts "You could always download it illegally..."
+    else 
+      puts "Sold Out"
+    end
   end
 end

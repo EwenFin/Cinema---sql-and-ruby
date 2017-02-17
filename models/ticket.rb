@@ -39,5 +39,4 @@ class Ticket
     sql = "UPDATE tickets SET (customer_id, film_id) = (#{@customer_id}, #{@films_id}) WHERE id = #{@id};"
     SqlRunner.run(sql)
   end
-  
 end

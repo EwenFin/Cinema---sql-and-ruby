@@ -5,14 +5,14 @@ DROP TABLE customers;
 CREATE TABLE films(
 id SERIAL4 PRIMARY KEY,  
 title VARCHAR(255),
-price  INT4, --DECIMAL(9,2)
+price  DECIMAL(9,2), --INT4
 review VARCHAR(255)
 );
 
 CREATE TABLE customers(
 id SERIAL4 PRIMARY KEY,
 name VARCHAR(255),
-funds INT4 --DECIMAL(9,2)
+funds DECIMAL(9,2) --INT4
 );
 
 CREATE TABLE tickets(
