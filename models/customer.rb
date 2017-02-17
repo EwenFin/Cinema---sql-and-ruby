@@ -53,17 +53,13 @@ class Customer
 
   def buy_ticket(film)
     cost = film.price
-    counter = 0
-    if self.funds >= cost && counter <= 50
+    if self.funds >= cost
     self.funds -= cost
-    counter += 1
     self.update
     ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id}) 
     ticket.save
-    elsif self.funds < cost
-      puts "You could always download it illegally..."
     else 
-      puts "Sold Out"
+      return "You could always download it illegally..."
     end
   end
 end

@@ -39,4 +39,8 @@ class Ticket
     sql = "UPDATE tickets SET (customer_id, film_id) = (#{@customer_id}, #{@films_id}) WHERE id = #{@id};"
     SqlRunner.run(sql)
   end
+
+  def add_to_sold
+    @sold += 1
+  end
 end
