@@ -28,4 +28,9 @@ class Film
     result = films.map{|film|Film.new(film)}
     return result 
   end
+
+  def delete
+    sql = "DELETE FROM films WHERE id =#{@id}"
+    SqlRunner.run(sql)
+  end
 end

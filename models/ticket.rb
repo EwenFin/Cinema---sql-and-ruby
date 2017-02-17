@@ -25,4 +25,9 @@ class Ticket
     return result
   end
 
+  def delete
+    sql = "DELETE FROM tickets WHERE id =#{@id}"
+    SqlRunner.run(sql)
+  end
+
 end
