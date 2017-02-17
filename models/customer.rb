@@ -26,9 +26,16 @@ class Customer
     return result
   end
 
+  def self.all()
+    sql = "SELECT * FROM customers"
+    return self.get_many(sql)
+  end
+
   def delete
     sql = "DELETE FROM customers WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
 
+  def update
+  end
 end

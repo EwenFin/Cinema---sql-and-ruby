@@ -25,9 +25,14 @@ class Ticket
     return result
   end
 
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    return self.get_many(sql)
+  end
+
   def delete
     sql = "DELETE FROM tickets WHERE id =#{@id}"
     SqlRunner.run(sql)
   end
-
+  
 end
