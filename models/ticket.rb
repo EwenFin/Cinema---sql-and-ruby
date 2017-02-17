@@ -19,4 +19,10 @@ class Ticket
     SqlRunner.run(sql)
   end
 
+  def self.get_many(sql)
+    tickets = SqlRunner.run(sql)
+    result = tickets.map{|ticket| Ticket.new(ticket)}
+    return result
+  end
+
 end

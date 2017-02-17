@@ -23,4 +23,9 @@ class Film
     SqlRunner.run(sql)
   end
 
+  def  self.get_many(sql)
+    films = SqlRunner.run(sql)
+    result = films.map{|film|Film.new(film)}
+    return result 
+  end
 end

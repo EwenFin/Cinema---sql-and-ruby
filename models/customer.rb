@@ -20,4 +20,10 @@ class Customer
     SqlRunner.run(sql)
   end
 
+  def self.get_many(sql)
+    customers = SqlRunner.run(sql)
+    result = customers.map{|customer| Customer.new(customer)}
+    return result
+  end
+
 end
