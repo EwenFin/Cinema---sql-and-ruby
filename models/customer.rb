@@ -53,13 +53,15 @@ class Customer
 
   def buy_ticket(film)
     cost = film.price
-    if self.funds >= cost
+    ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id}) 
+    if self.funds >= cost && ticket.ticket_count <= 50
     self.funds -= cost
     self.update
-    ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id}) 
     ticket.save
-    else 
+    elsif self.funds < cost
       return "You could always download it illegally..."
+    elsif ticket.ticket_count >= 50
+      return "Sold Out!"
     end
   end
 end

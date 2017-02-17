@@ -2,6 +2,7 @@ require_relative('../db/sql_runner.rb')
 
 class Ticket
   attr_reader :id, :customer_id, :film_id
+  attr_accessor :seats_left
   def initialize(options)
     @id = options['id']
     @customer_id = options['customer_id'].to_i
@@ -40,7 +41,9 @@ class Ticket
     SqlRunner.run(sql)
   end
 
-  def add_to_sold
-    @sold += 1
+  def ticket_count
+    sql = "SELECT COUNT(id) FROM tickets"
+    result = SqlRunner.run(sql)[0]
+    return result['count'].to_i
   end
 end
