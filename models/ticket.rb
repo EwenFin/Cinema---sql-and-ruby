@@ -6,11 +6,11 @@ class Ticket
     @id = options['id']
     @customer_id = options['customer_id'].to_i
     @film_id = options['film_id'].to_i
-    @time = options['time'].to_i
+    @time = options['time']
   end
 
   def save
-    sql = "INSERT INTO tickets (customer_id, film_id, time) VALUES ('#{@customer_id}', #{@film_id}, #{@time}) RETURNING id"
+    sql = "INSERT INTO tickets (customer_id, film_id, time) VALUES ('#{@customer_id}', #{@film_id}, '#{@time}') RETURNING id"
     ticket = SqlRunner.run(sql)[0]
     @id = ticket['id'].to_i
   end
