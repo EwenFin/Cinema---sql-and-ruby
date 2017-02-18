@@ -49,4 +49,14 @@ class Film
     return Customer.get_many(sql)
   end
 
+  def tickets_sold(showing)
+    # sql = "SELECT COUNT(id) FROM tickets WHERE tickets.time = showing AND film_id = #{@id}"
+    #can you pass an argument to a sql statement?
+
+    sql = "SELECT * FROM tickets WHERE film_id = #{@id}"
+    tickets = Ticket.get_many(sql)
+    result = tickets.select{|ticket| ticket.time == showing }
+    return result.length.to_i
+  end
+
 end
