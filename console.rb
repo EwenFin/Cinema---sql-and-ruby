@@ -28,13 +28,13 @@ customer1.save
 customer2.save
 customer3.save
 
-ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id,})
+ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id, 'time' => 2100})
 
-ticket2 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id})
+ticket2 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film1.id,'time' => 2100})
 
-ticket3 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film2.id})
+ticket3 = Ticket.new({'customer_id' => customer3.id, 'film_id' => film2.id,'time' => 1700})
 
-ticket4 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film2.id})
+ticket4 = Ticket.new({'customer_id' => customer2.id, 'film_id' => film2.id,'time' => 1500})
 
 ticket1.save
 ticket2.save

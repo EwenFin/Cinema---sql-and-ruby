@@ -1,16 +1,16 @@
 require_relative('../db/sql_runner.rb')
 
 class Ticket
-  attr_reader :id, :customer_id, :film_id
-  attr_accessor :seats_left
+  attr_reader :id, :customer_id, :film_id, :time
   def initialize(options)
     @id = options['id']
     @customer_id = options['customer_id'].to_i
     @film_id = options['film_id'].to_i
+    @time = options['time'].to_i
   end
 
   def save
-    sql = "INSERT INTO tickets (customer_id, film_id) VALUES ('#{@customer_id}', #{@film_id}) RETURNING id"
+    sql = "INSERT INTO tickets (customer_id, film_id, time) VALUES ('#{@customer_id}', #{@film_id}, #{@time}) RETURNING id"
     ticket = SqlRunner.run(sql)[0]
     @id = ticket['id'].to_i
   end
@@ -46,4 +46,5 @@ class Ticket
     result = SqlRunner.run(sql)[0]
     return result['count'].to_i
   end
+
 end
